@@ -3,6 +3,7 @@
 //  The component will call the API to create a new post.
 
 import { useState } from "react";
+import "./createPost.css"
 
 export function CreatePostForm() {
   const [inputs, setInputs] = useState({});
@@ -28,32 +29,29 @@ export function CreatePostForm() {
         </>
       ) : null}
       <form onSubmit={handleSubmit}>
-        <label>
-          Enter your username:
+       
           <input
+          placeholder="User"
             type="text"
             name="username"
             value={inputs.username || ""}
             onChange={handleChange}
           />
-        </label>
-        <label>
-          Enter post title:
+        
           <input
+          placeholder="Title"
             type="text"
             name="title"
             value={inputs.title || ""}
             onChange={handleChange}
           />
-        </label>
-        <label>
-          Enter post content:
+    
           <textarea
+          placeholder="Enter post content:"
             name="content"
             value={inputs.content || ""}
             onChange={handleChange}
           />
-        </label>
         <input type="submit" value="Create Post" />
       </form>
     </>

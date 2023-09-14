@@ -1,7 +1,9 @@
 import React from 'react'
+import DropDown from './DropDown'
 import "./Header.css"
 
 export default function Header() {
+  
   return (
     <header>
       <img className='logo' src="./Reddit-logo.png" alt="reddit-logo" />
@@ -12,9 +14,8 @@ export default function Header() {
           <li><a href="/">HOT</a></li>
           <li><a href="/">NEW</a></li>
           <li><a href="/">CONTROVERSIAL</a></li>
-          <li><a href="/">RISING</a></li>
-          <li><a href="/">MORE</a></li>
-          
+          <li><a href="/">CREATE POST + </a></li>
+            <DropDown/>
         </ul>
       </nav>
       </div>

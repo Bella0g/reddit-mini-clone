@@ -9,15 +9,11 @@ header {
     width: 165px;
     height: 85px;
     margin: 1rem;
-    padding-right: 3rem;
+    padding-right: 5rem;
 }
 
 h2 {
-    padding-bottom: 1rem;
-}
-
-nav {
-
+    padding-bottom: .5rem;
 }
 
 ul {
@@ -39,6 +35,6 @@ a {
 }
 
 a:hover {
-    padding-bottom: 2px;
+    padding-bottom: 4px;
     border-bottom: 2px solid #FF4500;
 }

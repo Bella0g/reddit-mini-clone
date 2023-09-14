@@ -14,7 +14,7 @@ export default function Header() {
           <li><a href="/">HOT</a></li>
           <li><a href="/">NEW</a></li>
           <li><a href="/">CONTROVERSIAL</a></li>
-          <li><a href="/">CREATE POST + </a></li>
+          <li><a href="/">ENTERTAINMENT</a></li>
             <DropDown/>
         </ul>
       </nav>

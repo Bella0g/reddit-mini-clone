@@ -1,5 +1,5 @@
 import React from 'react'
-import DropDown from './DropDown'
+import DropDown from './Menu'
 import "./Header.css"
 
 export default function Header() {
@@ -15,7 +15,7 @@ export default function Header() {
           <li><a href="/">NEW</a></li>
           <li><a href="/">CONTROVERSIAL</a></li>
           <li><a href="/">ENTERTAINMENT</a></li>
-            <DropDown/>
+             <DropDown/>
         </ul>
       </nav>
       </div>

@@ -1,0 +1,23 @@
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-menu-container {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    display: flex;
+}
+
+.dropdown-menu {
+    background: #c9c9c9ed;
+    padding: 2em 1.5em 0;
+    font-size: 1.1em;
+    display: none;
+    flex-direction: column;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}

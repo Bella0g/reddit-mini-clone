@@ -52,7 +52,7 @@ export function CreatePostForm() {
             value={inputs.content || ""}
             onChange={handleChange}
           />
-        <input type="submit" value="Create Post"/>
+        <button type="submit">Submit</button>
       </form>
     </>
   );

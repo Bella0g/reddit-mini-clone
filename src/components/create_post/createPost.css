@@ -1,26 +1,24 @@
+
 form {
     display: flex;
     flex-direction: column;
     max-width: 40vw;
     margin: 0 auto;
-    background-color: #FFF;
+    padding-top: 1.5rem;
 }
 
 input[type="text"],
 input[type="number"],
 textarea {
-    margin-bottom: 16px;
-    border-radius: 4px;
     font-size: 16px;
+    resize: none;
+    height: min-content;
 }
 
-input[type="submit"] {
-    color: #fff;
-    padding: 8px ;
-    width: 10vw;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 18px;
+button {
+    padding: 5px;
+    width: 8vw;
+    height: 4vw;
+    font-size: 16px;
 }
 

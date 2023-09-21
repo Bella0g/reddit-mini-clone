@@ -1,5 +1,4 @@
 import MainPage from './pages/MainPage';
-import postDetails from './pages/PostDetails';
 import './App.css';
 
 function App() {

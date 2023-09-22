@@ -1,15 +1,13 @@
 .logo {
     width: 12vw;
     height: 12vh;
-}
-
-strong {
-    padding: 20px;
+    margin-right: 25px;
 }
 
 nav {
-    justify-content: space-around; 
-    padding-top: 5px;
+    justify-content: space-around;
+    position: fixed;
+    margin: 10px;
 }
 
 ul {

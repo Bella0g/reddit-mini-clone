@@ -1,12 +1,14 @@
-import React from 'react'
-import Header from '../components/Header/Header';
-import { CreatePostForm } from '../components/create_post/createPost';
+import React from "react";
+import Header from "../components/header/header";
+import { CreatePostForm } from "../components/create_post/createPost";
+import Post from "../components/posts/posts";
 
 export default function MainPage() {
   return (
     <>
-    <Header />
-    <CreatePostForm/>
+      <Header />
+      <CreatePostForm />
+      <Post />
     </>
-  )
+  );
 }

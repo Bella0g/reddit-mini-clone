@@ -8,7 +8,6 @@ export default function Header() {
     <nav>
       <img className='logo' src="./Reddit-logo.png" alt="reddit-logo" />
       <div className='headerContainer'>
-        <strong>All Subreddits</strong>
         <ul>
           <li><a href="/">HOT</a></li>
           <li><a href="/">NEW</a></li>

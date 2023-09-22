@@ -1,5 +1,6 @@
 //  This component will display all the posts on the main page. 
 // It will show the title, a part of the content (max 60 characters), tags, and the name of the creator (user).
+import "./Posts.css"
 import React, { useEffect, useState } from "react";
 
 const PostList = () => {
@@ -14,18 +15,19 @@ const PostList = () => {
     }, []);
 
     return (
-        <div>
+        <div className="post-grid" >
             {posts.map((post) => (
-                <div key={post.id}>
-                    <h2>{post.title}</h2>
+                <article key={post.id}>
+                    <h3>{post.title}</h3>
                     <p>{post.body.slice(0, 60)}...</p>
                     <ul>
                         {post.tags.map((tag) => (
                             <li key={tag}>{tag}</li>
                         ))}
                     </ul>
-                    <p>Creator: User {post.userId}</p>
-                </div>
+                    <p>Created by: User {post.userId}</p>
+                    
+                </article>
             ))}
         </div>
     );

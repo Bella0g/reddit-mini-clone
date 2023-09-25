@@ -10,7 +10,7 @@ nav {
     margin: 10px;
 }
 
-ul {
+.header-ul {
     gap: 5rem;
     list-style: none;
     height: 10vh;

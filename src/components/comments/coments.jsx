@@ -2,6 +2,7 @@
 // It will show the content of the comment and the name of the creator (user).
 
 import { useEffect, useState } from "react";
+import "./comments.css"
 
 function Coments() {
   const [comment, setComment] = useState([]);
@@ -20,9 +21,9 @@ function Coments() {
       {comment.map((comment) => {
         return (
           <>
-            <ul key={comment.id}>
+            <ul className="comments-ul" key={comment.id}>
               <p>{comment.body}</p>
-              <p>{comment.user.username}</p>
+              <p>created by: {comment.user.username}</p>
             </ul>
           </>
         );

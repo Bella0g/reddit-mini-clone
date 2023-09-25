@@ -1,8 +1,7 @@
 import React from "react";
-import Header from "../components/header/header";
+import Header from "../components/header/Header";
 import { CreatePostForm } from "../components/create_post/createPost";
 import Posts from "../components/posts/posts";
-import Coments from "../components/comments/coments";
 
 export default function MainPage() {
   return (
@@ -10,7 +9,6 @@ export default function MainPage() {
       <Header />
       <CreatePostForm />
       <Posts />
-      <Coments />
     </>
   );
 }

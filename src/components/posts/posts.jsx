@@ -1,6 +1,7 @@
 //  This component will display all the posts on the main page.
 // It will show the title, a part of the content (max 60 characters), tags, and the name of the creator (user).
 import "./Posts.css";
+import Coments from "../comments/coments";
 import React, { useEffect, useState } from "react";
 
 const PostList = () => {
@@ -25,7 +26,9 @@ const PostList = () => {
               <li key={tag}>{tag}</li>
             ))}
           </ul>
+          <p>{post.reactions}</p>
           <p>Created by: User {post.userId}</p>
+          <Coments />
         </article>
       ))}
     </div>

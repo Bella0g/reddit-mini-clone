@@ -18,16 +18,16 @@ const PostList = () => {
   return (
     <div className="post-grid">
       {posts.map((post) => (
-        <article key={post.id}>
-          <h3>{post.title}</h3>
+        <article className="article-container" key={post.id}>
+          <h3 className="post-title">{post.title}</h3>
           <p>{post.body.slice(0, 60)}...</p>
-          <ul>
+          <ul className="ul-tags">
             {post.tags.map((tag) => (
-              <li key={tag}>{tag}</li>
+              <li key={tag}>#{tag}</li>
             ))}
           </ul>
-          <p>{post.reactions}</p>
-          <p>Created by: User {post.userId}</p>
+          <p className="reaction">{post.reactions}</p>
+          <p className="post-user-name">Created by: User {post.userId}</p>
           <Coments />
         </article>
       ))}

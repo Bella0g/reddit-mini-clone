@@ -5,6 +5,30 @@
     padding: 5px;
 }
 
-article {
+.article-container {
+    padding: 12px;
     width: 30vw;
+}
+
+.post-title {
+    font-size: 22px;
+}
+
+.ul-tags {
+    list-style: none;
+    display: flex;
+}
+
+li {
+    display: inline;
+    margin-right: 10px;
+}
+
+.reaction {
+    font-size: smaller;
+    margin: 0;
+}
+
+.post-user-name {
+    font-size: 12px;
 }

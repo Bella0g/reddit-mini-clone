@@ -22,8 +22,8 @@ function Coments() {
         return (
           <>
             <ul className="comments-ul" key={comment.id}>
-              <p>{comment.body}</p>
-              <p>created by: {comment.user.username}</p>
+              <p className="comment">{comment.body}</p>
+              <p className="comment-user-name">Created by: {comment.user.username}</p>
             </ul>
           </>
         );

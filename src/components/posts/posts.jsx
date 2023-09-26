@@ -26,9 +26,11 @@ const PostList = () => {
               <li key={tag}>#{tag}</li>
             ))}
           </ul>
-          <p className="reaction">{post.reactions}</p>
           <p className="post-user-name">Created by: User {post.userId}</p>
-          <Coments />
+          <div className="bottom-div">
+            <p className="reaction">{post.reactions}</p>
+            <Coments />
+          </div>
         </article>
       ))}
     </div>

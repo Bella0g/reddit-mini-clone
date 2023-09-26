@@ -1,34 +1,40 @@
 .post-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(6, 1fr);
-    padding: 5px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  padding: 5px;
 }
 
 .article-container {
-    padding: 12px;
-    width: 30vw;
+  padding: 12px;
+  width: 30vw;
 }
 
 .post-title {
-    font-size: 22px;
+  font-size: 22px;
 }
 
 .ul-tags {
-    list-style: none;
-    display: flex;
+  list-style: none;
+  display: flex;
 }
 
 li {
-    display: inline;
-    margin-right: 10px;
+  display: inline;
+  margin-right: 10px;
 }
 
 .reaction {
-    font-size: smaller;
-    margin: 0;
+  font-size: smaller;
+  margin: 0;
 }
 
 .post-user-name {
-    font-size: 12px;
+  font-size: 12px;
+}
+
+.bottom-div {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
 }

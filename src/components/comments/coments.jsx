@@ -1,35 +1,51 @@
-// Comments component: This component will display all the comments for a post.
-// It will show the content of the comment and the name of the creator (user).
-
 import { useEffect, useState } from "react";
-import "./comments.css"
+import "./comments.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faComment } from "@fortawesome/free-solid-svg-icons";
 
-function Coments() {
-  const [comment, setComment] = useState([]);
+function Comments() {
+  const [comments, setComments] = useState([]);
+  const [showComments, setShowComments] = useState(false);
+
   useEffect(() => {
-    getComment();
+    getComments();
   }, []);
 
-  const getComment = async () => {
+  const getComments = async () => {
     const api = await fetch("https://dummyjson.com/comments");
     const commentData = await api.json();
     console.log(commentData);
-    setComment(commentData.comments);
+    setComments(commentData.comments);
   };
+
+  const toggleComments = () => {
+    setShowComments(!showComments);
+  };
+
   return (
     <>
-      {comment.map((comment) => {
-        return (
-          <>
-            <ul className="comments-ul" key={comment.id}>
-              <p className="comment">{comment.body}</p>
-              <p className="comment-user-name">Created by: {comment.user.username}</p>
-            </ul>
-          </>
-        );
-      })}
+      <div className="show-comments">
+        <button onClick={toggleComments} className="button-comment">
+          <FontAwesomeIcon icon={faComment} className="comment-icon" />
+          {showComments ? "Hide" : "Show Comments"}
+        </button>
+      </div>
+      {showComments && (
+        <div>
+          {comments.map((comment) => {
+            return (
+              <ul className="comments-ul" key={comment.id}>
+                <p className="comment">{comment.body}</p>
+                <p className="comment-user-name">
+                  Created by: {comment.user.username}
+                </p>
+              </ul>
+            );
+          })}
+        </div>
+      )}
     </>
   );
 }
 
-export default Coments;
+export default Comments;

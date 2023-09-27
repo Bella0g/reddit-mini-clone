@@ -1,7 +1,7 @@
 //  This component will display all the posts on the main page.
 // It will show the title, a part of the content (max 60 characters), tags, and the name of the creator (user).
 import "./Posts.css";
-import Coments from "../comments/coments";
+import Comments from "../comments/comments";
 import React, { useEffect, useState } from "react";
 import { FaRegThumbsUp } from "react-icons/fa6";
 

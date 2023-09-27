@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
-import "./comments.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faComment } from "@fortawesome/free-solid-svg-icons";
+import "./Comments.css";
 
 function Comments() {
   const [comments, setComments] = useState([]);
@@ -26,7 +24,7 @@ function Comments() {
     <>
       <div className="show-comments">
         <button onClick={toggleComments} className="button-comment">
-          <FontAwesomeIcon icon={faComment} className="comment-icon" />
+          
           {showComments ? "Hide" : "Show Comments"}
         </button>
       </div>

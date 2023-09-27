@@ -3,6 +3,8 @@
 import "./Posts.css";
 import Coments from "../comments/coments";
 import React, { useEffect, useState } from "react";
+import { FaRegThumbsUp } from "react-icons/fa6";
+
 
 const PostList = () => {
   const [posts, setPosts] = useState([]);
@@ -15,20 +17,29 @@ const PostList = () => {
       });
   }, []);
 
+  const [countUp, setCountUp] = useState(0)
+  const incrementCount = () => {
+    setCountUp(countUp + 1);
+  }
+
+
   return (
     <div className="post-grid">
       {posts.map((post) => (
         <article className="article-container" key={post.id}>
+
+          <p className="post-user-name">Created by: User {post.userId}</p>
           <h3 className="post-title">{post.title}</h3>
-          <p>{post.body.slice(0, 60)}...</p>
+          <p className="post-body">{post.body.slice(0, 60)}...</p>
           <ul className="ul-tags">
             {post.tags.map((tag) => (
-              <li key={tag}>#{tag}</li>
+              <li className="li-posts" key={tag}>#{tag}</li>
             ))}
           </ul>
-          <p className="reaction">{post.reactions}</p>
-          <p className="post-user-name">Created by: User {post.userId}</p>
-          <Coments />
+          <span className="reaction">
+            <button className="thumbs-up" onClick={incrementCount}><FaRegThumbsUp /></button>
+            <p className="increment" >{post.reactions + countUp}</p>
+          </span>
         </article>
       ))}
     </div>

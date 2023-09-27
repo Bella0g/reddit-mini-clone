@@ -8,6 +8,7 @@ nav {
     justify-content: space-around;
     position: fixed;
     margin: 10px;
+    margin-left: 150px;
 }
 
 .header-ul {

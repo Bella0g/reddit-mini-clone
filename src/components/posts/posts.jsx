@@ -6,6 +6,8 @@ import React, { useEffect, useState } from "react";
 import { FaRegThumbsUp } from "react-icons/fa6";
 
 
+
+
 const PostList = () => {
   const [posts, setPosts] = useState([]);
 
@@ -27,7 +29,6 @@ const PostList = () => {
     <div className="post-grid">
       {posts.map((post) => (
         <article className="article-container" key={post.id}>
-
           <p className="post-user-name">Created by: User {post.userId}</p>
           <h3 className="post-title">{post.title}</h3>
           <p className="post-body">{post.body.slice(0, 60)}...</p>

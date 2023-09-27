@@ -60,7 +60,7 @@
 
 
 button.thumbs-up {
-    background-color: rgb(211, 209, 209);;
+    background-color: rgb(211, 209, 209);
     color: #686766ea;
     font-size: 15px;
     border-style: none;
@@ -75,11 +75,5 @@ button.thumbs-up {
 }
 
 .thumbs-up:focus {
-    border-style: none;
-}
-
-.view-more {
-    float:right;
-    display: flex;
-    margin-bottom: 20px;
+    box-shadow: none;
 }

@@ -1,13 +1,11 @@
 .logo {
-    width: 12vw;
-    height: 12vh;
-    margin-right: 25px;
+    width: 10vw;
+    height: 10vh;
 }
 
 nav {
     justify-content: space-around;
     margin: 10px;
-    
 }
 
 .header-ul {
@@ -20,8 +18,4 @@ nav {
 
 li {
     font-size: 14px;
-}
-
-a {
-    margin: 0 5px;
 }

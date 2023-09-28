@@ -14,13 +14,15 @@ const PostList = () => {
     fetch("https://dummyjson.com/posts")
       .then((res) => res.json())
       .then((data) => {
+        console.log(data);
         setPosts(data.posts);
       });
   }, []);
 
+  
   const [countUp, setCountUp] = useState(0)
   const incrementCount = () => {
-    setCountUp(countUp + 1);
+    setCountUp (countUp + 1);
   }
 
 

@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import "./Comments.css";
+import { useEffect, useState } from "react"
 
 function Comments() {
   const [comments, setComments] = useState([]);
@@ -23,10 +22,9 @@ function Comments() {
   return (
     <>
       <div className="show-comments">
-        <button onClick={toggleComments} className="button-comment">
-          
+  
           {showComments ? "Hide" : "Show Comments"}
-        </button>
+  </button>*/}
       </div>
       {showComments && (
         <div>

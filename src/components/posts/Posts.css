@@ -1,17 +1,13 @@
-.post-grid {
-    padding: 5px;
-}
 
 .article-container {
     padding: 10px;
-    width: 58vw;
-    height: 250px;
+    width: 60vw;
     overflow: hidden;
     margin-left:360px; 
 }
 
 .post-title {
-    margin-top: -25px;
+    margin: 0;
     font-size: 20px;
     
 }
@@ -36,10 +32,10 @@
 .post-user-name {
     font-size: 12px;
     font-weight: bold;
+    margin: 0;
 }
 
 .post-body {
-    margin-top: -30px;
     font-size: 12px;
 }
 

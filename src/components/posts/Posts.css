@@ -32,6 +32,7 @@
 .post-user-name {
     font-size: 12px;
     font-weight: bold;
+    margin: 0;
 }
 
 .post-body {

@@ -7,7 +7,6 @@ import { FaRegThumbsUp } from "react-icons/fa6";
 
 
 
-
 const PostList = () => {
   const [posts, setPosts] = useState([]);
 
@@ -15,18 +14,24 @@ const PostList = () => {
     fetch("https://dummyjson.com/posts")
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setPosts(data.posts);
       });
   }, []);
 
+  function ButtonComponent() {
+    const [countUp, setCountUp] = useState(0)
   
-  const [countUp, setCountUp] = useState(0)
-  const incrementCount = () => {
-    setCountUp (countUp + 1);
-  }
-
-
+    const incrementCount = () => {
+      setCountUp(countUp + 1);
+    }
+    return (
+      <>
+        <button className="thumbs-up" onClick={incrementCount}><FaRegThumbsUp /></button>
+        <p className="increment">{countUp}</p>
+      </>
+    )
+  };
+  
   return (
     <div className="post-grid">
       {posts.map((post) => (
@@ -40,8 +45,7 @@ const PostList = () => {
             ))}
           </ul>
           <span className="reaction">
-            <button className="thumbs-up" onClick={incrementCount}><FaRegThumbsUp /></button>
-            <p className="increment" >{post.reactions + countUp}</p>
+            <ButtonComponent />
           </span>
         </article>
       ))}

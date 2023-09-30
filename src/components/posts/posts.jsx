@@ -4,27 +4,33 @@ import "./Posts.css";
 import React, { useEffect, useState } from "react";
 import { FaRegThumbsUp } from "react-icons/fa6";
 
-  const PostList = ({ selectedPosts }) => {
-    const [posts, setPosts] = useState([]);
 
-    useEffect(() => {
-      if (selectedPosts) {
-        setPosts(selectedPosts);
-      } else {
-        fetch("https://dummyjson.com/posts")
-          .then((res) => res.json())
-          .then((data) => {
-            console.log(data);
-            setPosts(data.posts);
-          });
-      }
-    }, [selectedPosts]);
 
+const PostList = () => {
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    fetch("https://dummyjson.com/posts")
+      .then((res) => res.json())
+      .then((data) => {
+        setPosts(data.posts);
+      });
+  }, []);
+
+  function ButtonComponent() {
     const [countUp, setCountUp] = useState(0)
+  
     const incrementCount = () => {
       setCountUp(countUp + 1);
     }
-
+    return (
+      <>
+        <button className="thumbs-up" onClick={incrementCount}><FaRegThumbsUp /></button>
+        <p className="increment">{countUp}</p>
+      </>
+    )
+  };
+  
   return (
     <div className="post-grid">
       {Array.isArray(posts) && posts.map((post) => (
@@ -38,8 +44,7 @@ import { FaRegThumbsUp } from "react-icons/fa6";
             ))}
           </ul>
           <span className="reaction">
-            <button className="thumbs-up" onClick={incrementCount}><FaRegThumbsUp /></button>
-            <p className="increment" >{post.reactions + countUp}</p>
+            <ButtonComponent />
           </span>
         </article>
       ))}

@@ -4,31 +4,30 @@ import "./Posts.css";
 import React, { useEffect, useState } from "react";
 import { FaRegThumbsUp } from "react-icons/fa6";
 
+  const PostList = ({ selectedPosts }) => {
+    const [posts, setPosts] = useState([]);
 
+    useEffect(() => {
+      if (selectedPosts) {
+        setPosts(selectedPosts);
+      } else {
+        fetch("https://dummyjson.com/posts")
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            setPosts(data.posts);
+          });
+      }
+    }, [selectedPosts]);
 
-
-const PostList = () => {
-  const [posts, setPosts] = useState([]);
-
-  useEffect(() => {
-    fetch("https://dummyjson.com/posts")
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        setPosts(data.posts);
-      });
-  }, []);
-
-  
-  const [countUp, setCountUp] = useState(0)
-  const incrementCount = () => {
-    setCountUp (countUp + 1);
-  }
-
+    const [countUp, setCountUp] = useState(0)
+    const incrementCount = () => {
+      setCountUp(countUp + 1);
+    }
 
   return (
     <div className="post-grid">
-      {posts.map((post) => (
+      {Array.isArray(posts) && posts.map((post) => (
         <article className="article-container" key={post.id}>
           <p className="post-user-name">Created by: User {post.userId}</p>
           <h3 className="post-title">{post.title}</h3>

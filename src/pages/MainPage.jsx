@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "../components/header/Header";
-import { CreatePostForm } from "../components/create_post/createPost";
-import Posts from "../components/posts/posts";
+import CreatePostForm from "../components/createPost/CreatePost";
+import Posts from "../components/posts/Posts";
 
 export default function MainPage() {
   return (

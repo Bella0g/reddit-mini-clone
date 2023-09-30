@@ -5,7 +5,8 @@
 import { useState } from "react";
 import "./createPost.css"
 
-export function CreatePostForm() {
+// create post has to save the post in local storage
+export default function CreatePostForm() {
   const [inputs, setInputs] = useState({});
   const [result, setResult] = useState(null);
 

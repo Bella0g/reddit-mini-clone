@@ -4,16 +4,14 @@ import "./Posts.css";
 import React, { useEffect, useState } from "react";
 import { FaRegThumbsUp } from "react-icons/fa6";
 
-
-
 const PostList = () => {
-  const [posts, setPosts] = useState([]);
+  const [fetchedPosts, setFetchedPosts] = useState([]);
 
   useEffect(() => {
     fetch("https://dummyjson.com/posts")
       .then((res) => res.json())
       .then((data) => {
-        setPosts(data.posts);
+        setFetchedPosts(data.posts);
       });
   }, []);
 
@@ -33,7 +31,7 @@ const PostList = () => {
   
   return (
     <div className="post-grid">
-      {Array.isArray(posts) && posts.map((post) => (
+      {Array.isArray(fetchedPosts) && fetchedPosts.map((post) => (
         <article className="article-container" key={post.id}>
           <p className="post-user-name">Created by: User {post.userId}</p>
           <h3 className="post-title">{post.title}</h3>

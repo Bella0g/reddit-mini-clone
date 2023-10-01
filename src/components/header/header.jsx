@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PostList from '../posts/Posts';
 import "./Header.css"
 
@@ -6,22 +6,29 @@ import "./Header.css"
 // fix so that the create post component never disappears when new topic is clicked
 const topics = ['fiction', 'mystery', 'history', 'crime', 'love'];
 
-// hamta alla och filtrera alla manuellt i koden
 export default function Header() {
-  const [selectedPosts, setSelectedPosts] = useState(null);
+  const [categorizedPosts, setCategorizedPosts] = useState({});
+  const [selectedCategory, setSelectedCategory] = useState(null);
+
+  useEffect(() => {
+    fetch("https://dummyjson.com/posts")
+      .then((res) => res.json())
+      .then((data) => {
+        const categorized = {};
+        topics.forEach((topic) => {
+          categorized[topic] = data.posts.filter((post) =>
+            post.tags.includes(topic)
+          );
+        });
+        setCategorizedPosts(categorized);
+      })
+      .catch((error) => console.error("Error fetching posts:", error));
+  }, []);
 
   const handleTopicClick = (topic) => {
-    fetch(`https://dummyjson.com/posts/search?q=${topic}`)
-      .then((res) => res.json())
-      .then((posts) => {
-        console.log("Received posts:", posts); // Log the received post data
-        setSelectedPosts(posts);
-      })
-      .catch((error) =>
-        console.error(`Error fetching posts for topic ${topic}:`, error)
-      );
+    // Set the selected category
+    setSelectedCategory(topic);
   };
-
 
   return (
     <div>
@@ -33,15 +40,23 @@ export default function Header() {
           <ul className='header-ul'>
             {topics.map(topic => (
               <li key={topic}>
-                <a onClick={() => handleTopicClick(topic)}>
+                <button className='header-button' onClick={() => handleTopicClick(topic)}>
                   {topic.toUpperCase()}
-                </a>
+                </button>
               </li>
             ))}
           </ul>
         </div>
       </nav>
-      <PostList selectedPosts={selectedPosts} />
+      <div>
+        {/* Display the categorized posts */}
+        {selectedCategory && (
+          <div>
+            <PostList posts={categorizedPosts[selectedCategory]} />
+          </div>
+        )}
+      </div>
+
     </div>
   )
 };

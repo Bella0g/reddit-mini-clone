@@ -3,8 +3,9 @@
 import "./Posts.css";
 import React, { useEffect, useState } from "react";
 import { FaRegThumbsUp } from "react-icons/fa6";
-
-
+import { BiCommentDots } from "react-icons/bi";
+import { BsChevronCompactDown } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 const PostList = () => {
   const [posts, setPosts] = useState([]);
@@ -18,19 +19,21 @@ const PostList = () => {
   }, []);
 
   function ButtonComponent() {
-    const [countUp, setCountUp] = useState(0)
-  
+    const [countUp, setCountUp] = useState(0);
+
     const incrementCount = () => {
       setCountUp(countUp + 1);
-    }
+    };
     return (
       <>
-        <button className="thumbs-up" onClick={incrementCount}><FaRegThumbsUp /></button>
+        <button className="thumbs-up" onClick={incrementCount}>
+          <FaRegThumbsUp />
+        </button>
         <p className="increment">{countUp}</p>
       </>
-    )
-  };
-  
+    );
+  }
+
   return (
     <div className="post-grid">
       {posts.map((post) => (
@@ -40,12 +43,18 @@ const PostList = () => {
           <p className="post-body">{post.body.slice(0, 60)}...</p>
           <ul className="ul-tags">
             {post.tags.map((tag) => (
-              <li className="li-posts" key={tag}>#{tag}</li>
+              <li className="li-posts" key={tag}>
+                #{tag}
+              </li>
             ))}
           </ul>
           <span className="reaction">
             <ButtonComponent />
           </span>
+          <Link to={"/PostDetails/" + post.id} className="link-item">
+            <BiCommentDots />
+            <BsChevronCompactDown />
+          </Link>
         </article>
       ))}
     </div>

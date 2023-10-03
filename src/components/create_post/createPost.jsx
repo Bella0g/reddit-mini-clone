@@ -1,11 +1,11 @@
-// Create post component: This component will allow users to create a new post. 
+// Create post component: This component will allow users to create a new post.
 // Users will be able to select the user who will create the post from the available users in the API.
 //  The component will call the API to create a new post.
 
 import { useState } from "react";
-import "./createPost.css"
+import "./createPost.css";
 
-export function CreatePostForm() {
+function CreatePostForm() {
   const [inputs, setInputs] = useState({});
   const [result, setResult] = useState(null);
 
@@ -29,31 +29,32 @@ export function CreatePostForm() {
         </>
       ) : null}
       <form onSubmit={handleSubmit}>
-       
-          <input
+        <input
           placeholder="User"
-            type="text"
-            name="username"
-            value={inputs.username || ""}
-            onChange={handleChange}
-          />
-        
-          <input
+          type="text"
+          name="username"
+          value={inputs.username || ""}
+          onChange={handleChange}
+        />
+
+        <input
           placeholder="Title"
-            type="text"
-            name="title"
-            value={inputs.title || ""}
-            onChange={handleChange}
-          />
-    
-          <textarea
+          type="text"
+          name="title"
+          value={inputs.title || ""}
+          onChange={handleChange}
+        />
+
+        <textarea
           placeholder="Enter post content:"
-            name="content"
-            value={inputs.content || ""}
-            onChange={handleChange}
-          />
+          name="content"
+          value={inputs.content || ""}
+          onChange={handleChange}
+        />
         <button type="submit">Submit</button>
       </form>
     </>
   );
 }
+
+export default CreatePostForm;

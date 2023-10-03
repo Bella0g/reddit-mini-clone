@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PostList from '../posts/Posts';
+import CreatePostForm from '../createPost/CreatePost';
 import "./Header.css"
 
 // Fix so that the correct post are shown when clicking a topic in the header
@@ -49,6 +50,8 @@ export default function Header() {
         </div>
       </nav>
       <div>
+        {/* Display the create post form */}
+        <CreatePostForm users={[]} />
         {/* Display the categorized posts */}
         {selectedCategory && (
           <div>

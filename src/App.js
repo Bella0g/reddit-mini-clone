@@ -1,13 +1,10 @@
-import MainPage from './pages/MainPage';
 import './App.css';
-
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-
-import Header from "./components/header/Header"
+import Header from './components/header/header';
 import CreatePostForm from "./components/createPost/CreatePost"
 import PostDetails from "./components/postDetails/PostDetails"
-import Posts from "./components/posts/Posts"
+import Posts from "./components/posts/posts"
 
 function App() {
   const [posts, setPosts] = useState([]);

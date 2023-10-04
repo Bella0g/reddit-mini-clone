@@ -1,90 +1,106 @@
-// Create post component: This component will allow users to create a new post. 
-// Users will be able to select the user who will create the post from the available users in the API.
-//  The component will call the API to create a new post.
-
-import { useState } from "react";
 import "./createPost.css"
+import React, { useState, useEffect } from 'react';
 
-const CreatePostForm = ({ users }) => {
+const CreatePostComponent = () => {
+  // State to store the list of users and form inputs
+  const [users, setUsers] = useState([]);
   const [inputs, setInputs] = useState({
-    username: "",
-    title: "",
-    content: "",
+    userId: '',
+    title: '',
+    content: '',
   });
 
+  useEffect(() => {
+    // Fetch users from the API
+    fetch('https://dummyjson.com/users')
+      .then((res) => res.json())
+      .then((data) => {
+        // Map the received user data to the expected format
+        const users = data.users.map((user) => ({
+          id: user.id,
+          username: user.username,
+        }));
+        setUsers(users);
+      })
+      .catch((error) => console.error('Error fetching users:', error));
+  }, []);
+
+  // Effect to populate the select element with user options
+  useEffect(() => {
+    const select = document.getElementById('user-select');
+    users.forEach(user => {
+      const option = document.createElement('option');
+      option.value = user.id;
+      option.text = user.username;
+      select.appendChild(option);
+    });
+  }, [users]);
+
+  // Handler for input changes
   const handleChange = (event) => {
     const { name, value } = event.target;
     setInputs((prevInputs) => ({ ...prevInputs, [name]: value }));
   };
 
+  // Handler for form submission
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    const selectedUser = users.find((user) => user.name === inputs.username);
-    if (!selectedUser) {
-      console.error("Invalid user selected.");
+    // Validate form inputs
+    if (!inputs.userId || !inputs.title || !inputs.content) {
+      console.error('Please fill out all fields.');
       return;
     }
 
+    const selectedUser = users.find((user) => user.id === parseInt(inputs.userId));
+
+    if (!selectedUser) {
+      console.error('Invalid user selected.');
+      return;
+    }
+
+    // Create a new post object
     const newPost = {
       title: inputs.title,
-      userId: selectedUser.id,
+      userId: parseInt(inputs.userId),
       body: inputs.content,
     };
 
-    // Call the API to add a new post
-    fetch("https://dummyjson.com/posts/add", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(newPost),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log("New post added:", data);
-        // Optionally, you can update your local state with the new post
-        // You can pass a callback function from the parent to handle this
-        // onPostCreate(data);
-      })
-      .catch((error) => console.error("Error adding new post:", error));
+    // Log the newly created post
+    console.log('New post created:', newPost);
+
+    // Reset form fields after submission
+    setInputs({
+      userId: '',
+      title: '',
+      content: '',
+    });
   };
 
   return (
-    <>
+    <div>
       <form onSubmit={handleSubmit}>
-        <select
-          name="username"
-          value={inputs.username}
-          onChange={handleChange}
-          required
-        >
-          <option value="" disabled>
-            Select a user
-          </option>
-          {users.map((user) => (
-            <option key={user.id} value={user.name}>
-              {user.name}
+        <div>
+          {/* Dropdown menu to select a user */}
+          <select id="user-select" name="userId" value={inputs.userId} onChange={handleChange} required>
+            <option value="" disabled>
+              Select a user
             </option>
-          ))}
-        </select>
-        <input
-          placeholder="Title"
-          type="text"
-          name="title"
-          value={inputs.title}
-          onChange={handleChange}
-          required
-        />
-        <textarea
-          placeholder="Enter post content:"
-          name="content"
-          value={inputs.content}
-          onChange={handleChange}
-          required
-        />
+          </select>
+        </div>
+        <div>
+          {/* Input field for the title */}
+          <input type="text" name="title" placeholder="Title" value={inputs.title} onChange={handleChange} required />
+        </div>
+        <div>
+          {/* Textarea for post content */}
+          <textarea name="content" placeholder="Post content" value={inputs.content} onChange={handleChange} required />
+        </div>
         <button type="submit">Submit</button>
       </form>
-    </>
+    </div>
   );
 };
 
-export default CreatePostForm;
+export default CreatePostComponent
+

@@ -96,7 +96,7 @@ const CreatePostComponent = () => {
           {/* Textarea for post content */}
           <textarea name="content" placeholder="Post content" value={inputs.content} onChange={handleChange} required />
         </div>
-        <button type="submit">Submit</button>
+        <button className="submit-button" type="submit">Submit</button>
       </form>
     </div>
   );

@@ -17,10 +17,10 @@ textarea {
     height: min-content;
 }
 
-button {
+.submit-button {
     padding: 5px;
     width: min-content;
-    height: 4vw;
-    font-size: 14px;
+    height: min-content;
+    font-size: 16px;
 }
 

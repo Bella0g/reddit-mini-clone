@@ -7,7 +7,7 @@ import { BiCommentDots } from "react-icons/bi";
 import { BsChevronCompactDown } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
-function ButtonComponent({ onClick, reactions }) {
+export function ButtonComponent({ onClick, reactions }) {
   return (
     <>
       <button className="thumbs-up" onClick={onClick}>
@@ -20,13 +20,15 @@ function ButtonComponent({ onClick, reactions }) {
 
 const PostList = ({ allPosts, posts, setPosts }) => {
   const addReactions = (post) => {
-    setPosts(allPosts.map(all => {
-      if (all !== post) {
-        return all;
-      } else {
-        return { ...post, reactions: post.reactions + 1 };
-      }
-    }));
+    setPosts(
+      allPosts.map((all) => {
+        if (all !== post) {
+          return all;
+        } else {
+          return { ...post, reactions: post.reactions + 1 };
+        }
+      })
+    );
   };
 
   return (
@@ -44,9 +46,12 @@ const PostList = ({ allPosts, posts, setPosts }) => {
             ))}
           </ul>
           <span className="reaction">
-            <ButtonComponent reactions={post.reactions} onClick={() => addReactions(post)}/>
+            <ButtonComponent
+              reactions={post.reactions}
+              onClick={() => addReactions(post)}
+            />
           </span>
-          <Link to={"/PostDetails/" + post.id} className="link-item">
+          <Link to={"/posts/" + post.id} className="link-item">
             <BiCommentDots />
             <BsChevronCompactDown />
           </Link>

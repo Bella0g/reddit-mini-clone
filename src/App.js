@@ -1,10 +1,10 @@
-import './App.css';
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Header from './components/header/header';
-import CreatePostForm from "./components/createPost/CreatePost"
-import PostDetails from "./components/postDetails/PostDetails"
-import Posts from "./components/posts/posts"
+import "./App.css";
+import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Header from "./components/header/header";
+import CreatePostForm from "./components/createPost/CreatePost";
+import PostDetails from "./components/postDetails/PostDetails";
+import Posts from "./components/posts/posts";
 
 function App() {
   const [posts, setPosts] = useState([]);
@@ -12,18 +12,18 @@ function App() {
   const [selectedTag, setSelectedTag] = useState(null);
 
   useEffect(() => {
-    fetch('https://dummyjson.com/posts')
+    fetch("https://dummyjson.com/posts")
       .then((res) => res.json())
       .then((data) => setPosts(data.posts))
-      .catch((error) => console.error('Error fetching posts:', error));
+      .catch((error) => console.error("Error fetching posts:", error));
 
-    fetch('https://dummyjson.com/users')
+    fetch("https://dummyjson.com/users")
       .then((res) => res.json())
       .then((data) => setUsers(data.users))
-      .catch((error) => console.error('Error fetching users:', error));
+      .catch((error) => console.error("Error fetching users:", error));
   }, []);
 
-  let filteredPosts = posts.filter(post => {
+  let filteredPosts = posts.filter((post) => {
     if (selectedTag === null) {
       return true;
     }
@@ -33,11 +33,23 @@ function App() {
 
   return (
     <Router>
-      <Header posts={posts} selectedTag={selectedTag} setSelectedTag={setSelectedTag} />
+      <Header
+        posts={posts}
+        selectedTag={selectedTag}
+        setSelectedTag={setSelectedTag}
+      />
       <CreatePostForm users={users} />
       <Routes>
-        <Route path="/posts/:postId" element={<PostDetails posts={posts} />} />
-        <Route path="/" element={<Posts allPosts={posts} posts={filteredPosts} setPosts={setPosts} />} />
+        <Route
+          path="/posts/:postId"
+          element={<PostDetails posts={posts} setPosts={setPosts} />}
+        />
+        <Route
+          path="/"
+          element={
+            <Posts allPosts={posts} posts={filteredPosts} setPosts={setPosts} />
+          }
+        />
       </Routes>
     </Router>
   );

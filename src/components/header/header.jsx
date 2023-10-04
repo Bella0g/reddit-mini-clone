@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import "./Header.css"
 
 const Header = ({ posts, selectedTag, setSelectedTag }) => {
@@ -36,3 +36,4 @@ const Header = ({ posts, selectedTag, setSelectedTag }) => {
 };
 
 export default Header;
+

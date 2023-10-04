@@ -1,9 +1,9 @@
 form {
     display: flex;
     flex-direction: column;
-    max-width: 40vw;
+    max-width: 60vw;
     margin: 0 auto;
-    padding-top: 1rem;
+    padding-top: .5rem;
 }
 
 input[type="text"],
@@ -19,7 +19,7 @@ textarea {
 
 button {
     padding: 5px;
-    width: 6vw;
+    width: min-content;
     height: 4vw;
     font-size: 14px;
 }

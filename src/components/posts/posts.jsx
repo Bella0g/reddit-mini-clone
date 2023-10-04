@@ -7,32 +7,27 @@ import { BiCommentDots } from "react-icons/bi";
 import { BsChevronCompactDown } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
-const PostList = () => {
-  const [posts, setPosts] = useState([]);
+function ButtonComponent({ onClick, reactions }) {
+  return (
+    <>
+      <button className="thumbs-up" onClick={onClick}>
+        <FaRegThumbsUp />
+      </button>
+      <p className="increment">{reactions}</p>
+    </>
+  );
+}
 
-  useEffect(() => {
-    fetch("https://dummyjson.com/posts")
-      .then((res) => res.json())
-      .then((data) => {
-        setPosts(data.posts);
-      });
-  }, []);
-
-  function ButtonComponent() {
-    const [countUp, setCountUp] = useState(0);
-
-    const incrementCount = () => {
-      setCountUp(countUp + 1);
-    };
-    return (
-      <>
-        <button className="thumbs-up" onClick={incrementCount}>
-          <FaRegThumbsUp />
-        </button>
-        <p className="increment">{countUp}</p>
-      </>
-    );
-  }
+const PostList = ({ allPosts, posts, setPosts }) => {
+  const addReactions = (post) => {
+    setPosts(allPosts.map(all => {
+      if (all !== post) {
+        return all;
+      } else {
+        return { ...post, reactions: post.reactions + 1 };
+      }
+    }));
+  };
 
   return (
     <div className="post-grid">
@@ -49,7 +44,7 @@ const PostList = () => {
             ))}
           </ul>
           <span className="reaction">
-            <ButtonComponent />
+            <ButtonComponent reactions={post.reactions} onClick={() => addReactions(post)}/>
           </span>
           <Link to={"/PostDetails/" + post.id} className="link-item">
             <BiCommentDots />

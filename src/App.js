@@ -8,11 +8,10 @@ import CreatePostForm from "./components/createPost/CreatePost"
 import PostDetails from "./components/postDetails/PostDetails"
 import Posts from "./components/posts/Posts"
 
-// use routing to change between main page an post details?
-
 function App() {
   const [posts, setPosts] = useState([]);
   const [users, setUsers] = useState([]);
+  const [selectedTag, setSelectedTag] = useState(null);
 
   useEffect(() => {
     fetch('https://dummyjson.com/posts')
@@ -26,13 +25,21 @@ function App() {
       .catch((error) => console.error('Error fetching users:', error));
   }, []);
 
+  let filteredPosts = posts.filter(post => {
+    if (selectedTag === null) {
+      return true;
+    }
+
+    return post.tags.includes(selectedTag);
+  });
+
   return (
     <Router>
-      <Header posts={posts} />
+      <Header posts={posts} selectedTag={selectedTag} setSelectedTag={setSelectedTag} />
       <CreatePostForm users={users} />
       <Routes>
         <Route path="/posts/:postId" element={<PostDetails posts={posts} />} />
-        <Route path="/" element={<Posts posts={posts} />} />
+        <Route path="/" element={<Posts allPosts={posts} posts={filteredPosts} setPosts={setPosts} />} />
       </Routes>
     </Router>
   );

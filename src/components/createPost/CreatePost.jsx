@@ -25,7 +25,7 @@ const CreatePostComponent = () => {
       .catch((error) => console.error('Error fetching users:', error));
   }, []);
 
-  // Effect to populate the select element with user options
+  // Effect to populate the select element with user options (ta bort) 
   useEffect(() => {
     const select = document.getElementById('user-select');
     users.forEach(user => {

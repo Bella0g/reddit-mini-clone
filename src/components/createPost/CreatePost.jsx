@@ -1,19 +1,19 @@
-import "./createPost.css"
-import React, { useState, useEffect } from 'react';
+import "./createPost.css";
+import React, { useState, useEffect } from "react";
 
 const CreatePostComponent = ({ users, onPostSubmit }) => {
   // State to store the list of users and form inputs
   const [inputs, setInputs] = useState({
-    userId: '',
-    title: '',
-    content: '',
+    userId: "",
+    title: "",
+    content: "",
   });
 
-  // Effect to populate the select element with user options (ta bort) 
+  // Effect to populate the select element with user options (ta bort)
   useEffect(() => {
-    const select = document.getElementById('user-select');
-    users.forEach(user => {
-      const option = document.createElement('option');
+    const select = document.getElementById("user-select");
+    users.forEach((user) => {
+      const option = document.createElement("option");
       option.value = user.id;
       option.text = user.username;
       select.appendChild(option);
@@ -32,14 +32,16 @@ const CreatePostComponent = ({ users, onPostSubmit }) => {
 
     // Validate form inputs
     if (!inputs.userId || !inputs.title || !inputs.content) {
-      console.error('Please fill out all fields.');
+      console.error("Please fill out all fields.");
       return;
     }
 
-    const selectedUser = users.find((user) => user.id === parseInt(inputs.userId));
+    const selectedUser = users.find(
+      (user) => user.id === parseInt(inputs.userId)
+    );
 
     if (!selectedUser) {
-      console.error('Invalid user selected.');
+      console.error("Invalid user selected.");
       return;
     }
 
@@ -49,19 +51,18 @@ const CreatePostComponent = ({ users, onPostSubmit }) => {
       userId: parseInt(inputs.userId),
       body: inputs.content,
       tags: [],
-      reactions: 0, 
+      reactions: 0,
       id: Date.now(),
     };
 
     // Send the new post data to the parent component
     onPostSubmit(newPost);
 
-
     // Reset form fields after submission
     setInputs({
-      userId: '',
-      title: '',
-      content: '',
+      userId: "",
+      title: "",
+      content: "",
     });
   };
 
@@ -70,7 +71,13 @@ const CreatePostComponent = ({ users, onPostSubmit }) => {
       <form onSubmit={handleSubmit}>
         <div>
           {/* Dropdown menu to select a user */}
-          <select id="user-select" name="userId" value={inputs.userId} onChange={handleChange} required>
+          <select
+            id="user-select"
+            name="userId"
+            value={inputs.userId}
+            onChange={handleChange}
+            required
+          >
             <option value="" disabled>
               Select a user
             </option>
@@ -78,17 +85,31 @@ const CreatePostComponent = ({ users, onPostSubmit }) => {
         </div>
         <div>
           {/* Input field for the title */}
-          <input type="text" name="title" placeholder="Title" value={inputs.title} onChange={handleChange} required />
+          <input
+            type="text"
+            name="title"
+            placeholder="Title"
+            value={inputs.title}
+            onChange={handleChange}
+            required
+          />
         </div>
         <div>
           {/* Textarea for post content */}
-          <textarea name="content" placeholder="Post content" value={inputs.content} onChange={handleChange} required />
+          <textarea
+            name="content"
+            placeholder="Post content"
+            value={inputs.content}
+            onChange={handleChange}
+            required
+          />
         </div>
-        <button className="submit-button" type="submit">Submit</button>
+        <button className="submit-button" type="submit">
+          Submit
+        </button>
       </form>
     </div>
   );
 };
 
-export default CreatePostComponent
-
+export default CreatePostComponent;

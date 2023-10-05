@@ -1,29 +1,13 @@
 import "./createPost.css"
 import React, { useState, useEffect } from 'react';
 
-const CreatePostComponent = () => {
+const CreatePostComponent = ({ users }) => {
   // State to store the list of users and form inputs
-  const [users, setUsers] = useState([]);
   const [inputs, setInputs] = useState({
     userId: '',
     title: '',
     content: '',
   });
-
-  useEffect(() => {
-    // Fetch users from the API
-    fetch('https://dummyjson.com/users')
-      .then((res) => res.json())
-      .then((data) => {
-        // Map the received user data to the expected format
-        const users = data.users.map((user) => ({
-          id: user.id,
-          username: user.username,
-        }));
-        setUsers(users);
-      })
-      .catch((error) => console.error('Error fetching users:', error));
-  }, []);
 
   // Effect to populate the select element with user options (ta bort) 
   useEffect(() => {

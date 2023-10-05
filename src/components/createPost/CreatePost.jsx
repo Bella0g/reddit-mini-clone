@@ -1,7 +1,7 @@
 import "./createPost.css"
 import React, { useState, useEffect } from 'react';
 
-const CreatePostComponent = ({ users }) => {
+const CreatePostComponent = ({ users, onPostSubmit }) => {
   // State to store the list of users and form inputs
   const [inputs, setInputs] = useState({
     userId: '',
@@ -48,10 +48,14 @@ const CreatePostComponent = ({ users }) => {
       title: inputs.title,
       userId: parseInt(inputs.userId),
       body: inputs.content,
+      tags: [],
+      reactions: 0, 
+      id: Date.now(),
     };
 
-    // Log the newly created post
-    console.log('New post created:', newPost);
+    // Send the new post data to the parent component
+    onPostSubmit(newPost);
+
 
     // Reset form fields after submission
     setInputs({

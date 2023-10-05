@@ -11,12 +11,14 @@ function App() {
   const [users, setUsers] = useState([]);
   const [selectedTag, setSelectedTag] = useState(null);
 
+  // Fetch posts
   useEffect(() => {
     fetch("https://dummyjson.com/posts")
       .then((res) => res.json())
       .then((data) => setPosts(data.posts))
       .catch((error) => console.error("Error fetching posts:", error));
 
+    // Fetch users
     fetch("https://dummyjson.com/users")
       .then((res) => res.json())
       .then((data) => setUsers(data.users))
@@ -31,6 +33,13 @@ function App() {
     return post.tags.includes(selectedTag);
   });
 
+  const handlePostSubmit = (newPost) => {
+    // Log the new post
+    console.log('New post to be added:', newPost);
+    // Update the posts state with the new post
+    setPosts([...posts, newPost]);
+  };
+
   return (
     <Router>
       <Header
@@ -38,7 +47,7 @@ function App() {
         selectedTag={selectedTag}
         setSelectedTag={setSelectedTag}
       />
-      <CreatePostForm users={users} />
+      <CreatePostForm users={users} onPostSubmit={handlePostSubmit} />
       <Routes>
         <Route
           path="/posts/:postId"

@@ -37,7 +37,7 @@ function App() {
     // Log the new post
     console.log('New post to be added:', newPost);
     // Update the posts state with the new post
-    setPosts([...posts, newPost]);
+    setPosts([newPost, ...posts]);
   };
 
   return (

@@ -1,5 +1,3 @@
-//  This component will display all the posts on the main page.
-// It will show the title, a part of the content (max 60 characters), tags, and the name of the creator (user).
 import "./Posts.css";
 import React from "react";
 import { FaRegThumbsUp } from "react-icons/fa6";
@@ -19,6 +17,7 @@ export function ButtonComponent({ onClick, reactions }) {
 }
 
 const PostList = ({ allPosts, posts, setPosts }) => {
+  console.log('Received posts in PostList:', posts);
   const addReactions = (post) => {
     setPosts(
       allPosts.map((all) => {

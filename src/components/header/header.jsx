@@ -1,5 +1,6 @@
 import React from "react";
 import "./Header.css";
+import Logo from "./Reddit-Logo.png"
 import { Link } from "react-router-dom";
 
 const Header = ({ posts, selectedTag, setSelectedTag }) => {
@@ -14,7 +15,7 @@ const Header = ({ posts, selectedTag, setSelectedTag }) => {
       <nav>
         <div className="image-container">
           <Link to={"/"}>
-            <img src="./Reddit-Logo.png" alt="reddit-logo" />
+            <img src={Logo} alt="reddit-logo" />
           </Link>
         </div>
         <div className="header-container">

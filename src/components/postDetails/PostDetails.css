@@ -34,3 +34,21 @@
   color: black;
   cursor: default;
 }
+
+/* Add comment */
+.create-comment {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.comment-text {
+  width: 60vw;
+}
+
+.add-comment-btn {
+  width: 20vw;
+  font-size: .8em;
+  padding: 5px;
+}

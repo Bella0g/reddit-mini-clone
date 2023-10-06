@@ -1,15 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import { BiCommentDots } from "react-icons/bi";
 import { ButtonComponent } from "../posts/posts";
 import { BsPlusLg } from "react-icons/bs";
 import "./PostDetails.css";
 
-function PostDetails({ posts, setPosts, comments }) {
+// Functional component to display post details and comments
+function PostDetails({ posts, setPosts, comments, users }) {
+
+  // Retrieve the postId from the URL
   const { postId } = useParams();
   const post = posts.find((post) => post.id.toString() === postId);
   const comment = comments.find((comment) => comment.id.toString() === postId);
 
+  const [showCreateComment, setShowCreateComment] = useState(false);
+  const [commentText, setCommentText] = useState("");
+
+  // Function to add reactions to a post
   const addReactions = (post) => {
     if (post) {
       const updatedPost = { ...post, reactions: post.reactions + 1 };
@@ -19,10 +25,46 @@ function PostDetails({ posts, setPosts, comments }) {
       const updatedPosts = [...posts];
       updatedPosts[postIndex] = updatedPost;
 
+
+      // Update the posts with the updated reactions
       setPosts(updatedPosts);
     }
   };
 
+  const handleCommentButtonClick = () => {
+    setShowCreateComment(true);
+  };
+
+  const handleCommentChange = (event) => {
+    setCommentText(event.target.value);
+  };
+
+
+  const handleAddComment = () => {
+    console.log('Adding a comment');
+    if (commentText.trim() !== "" && users.length > 0) {
+      const randomUserIndex = Math.floor(Math.random() * users.length);
+      const randomUser = users[randomUserIndex];
+
+      const newComment = {
+        id: Math.random(),
+        postId,
+        body: commentText,
+        user: {
+          username: randomUser.username,
+        }
+      };
+
+      console.log('New comment:', newComment);
+
+      setCommentText(""); // Clear the comment input
+    } else {
+      console.error("No users available to create a comment.");
+    }
+  };
+
+
+  // If post is not found, display a message
   if (!post) {
     return <div>Post not found</div>;
   } else if (!comment) {
@@ -31,8 +73,6 @@ function PostDetails({ posts, setPosts, comments }) {
 
   return (
     <>
-      {console.log(comment)}
-      {console.log(posts)}
       <div className="post-grid">
         <article className="article-container">
           <span className="article-top">
@@ -57,7 +97,8 @@ function PostDetails({ posts, setPosts, comments }) {
           </span>
         </article>
         <div className="comment-container">
-          <button className="comment-button">
+          <button className="comment-button"
+            onClick={handleCommentButtonClick}>
             <BsPlusLg />
             Add a Comment
           </button>
@@ -73,6 +114,19 @@ function PostDetails({ posts, setPosts, comments }) {
           </article>
         </div>
       </div>
+
+      {showCreateComment && (
+        <div className="create-comment">
+          <textarea
+          className="comment-text"
+            rows="2"
+            placeholder="Write a new comment..."
+            value={commentText}
+            onChange={handleCommentChange}
+          />
+          <button className="add-comment-btn" onClick={handleAddComment}>Add Comment</button>
+        </div>
+      )}
     </>
   );
 }

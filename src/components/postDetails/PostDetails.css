@@ -1,0 +1,36 @@
+.comment-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 150px;
+  padding: 0px;
+  height: 40px;
+  font-size: 0.8em;
+  margin-top: 30px;
+}
+
+.comment-container {
+  display: flex;
+  flex-direction: column;
+  width: 65vw;
+  padding: 0px;
+  margin: 0px;
+}
+
+.comment-article {
+  margin: 0;
+  padding: 10px;
+  font-size: 14px;
+}
+
+.comments-list li {
+  list-style-type: none;
+  cursor: default;
+}
+
+.comment-body {
+  margin-top: 10px;
+  font-size: 14px;
+  color: black;
+  cursor: default;
+}

@@ -1,8 +1,8 @@
-import React from 'react';
-import "./Header.css"
+import React from "react";
+import "./Header.css";
+import { Link } from "react-router-dom";
 
 const Header = ({ posts, selectedTag, setSelectedTag }) => {
-
   const tags = [...new Set(posts.map((post) => post.tags).flat())];
 
   const handleTagClick = (tag) => {
@@ -13,15 +13,18 @@ const Header = ({ posts, selectedTag, setSelectedTag }) => {
     <div>
       <nav>
         <div className="image-container">
-          <img src="./Reddit-Logo.png" alt="reddit-logo" />
+          <Link to={"/"}>
+            <img src="./Reddit-Logo.png" alt="reddit-logo" />
+          </Link>
         </div>
         <div className="header-container">
           <ul className="header-ul">
             {tags.map((tag) => (
               <li key={tag}>
                 <button
-                  className={`header-button ${selectedTag === tag ? 'active' : ''
-                    }`}
+                  className={`header-button ${
+                    selectedTag === tag ? "active" : ""
+                  }`}
                   onClick={() => handleTagClick(tag)}
                 >
                   {tag.toUpperCase()}
@@ -36,4 +39,3 @@ const Header = ({ posts, selectedTag, setSelectedTag }) => {
 };
 
 export default Header;
-

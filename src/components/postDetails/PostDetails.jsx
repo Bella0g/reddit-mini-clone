@@ -9,18 +9,29 @@ function PostDetails({ posts, setPosts, comments, users }) {
   // Retrieve the postId from the URL
   const { postId } = useParams();
   const post = posts.find((post) => post.id.toString() === postId);
-  //const comment = comments.find((comment) => comment.id.toString() === postId);
 
   const [showCreateComment, setShowCreateComment] = useState(false);
   const [commentText, setCommentText] = useState("");
   const [commentsState, setCommentsState] = useState([]);
 
   useEffect(() => {
+    // Find the specific comment for the post
+    const specificComment = comments.find(
+      (comment) => comment.id.toString() === postId
+    );
+
+    // Filter and sort comments for the post
     const postComments = comments.filter(
       (comment) => comment.postId === postId
     );
-    setCommentsState(comments);
-  }, [comments]);
+    postComments.sort((a, b) => a.id - b.id);
+
+    // Combine the specific comment and sorted comments
+    const allComments = [specificComment, ...postComments];
+
+    // Set the commentsState with the combined comments
+    setCommentsState(allComments);
+  }, [comments, postId]);
 
   // Function to add reactions to a post
   const addReactions = (post) => {

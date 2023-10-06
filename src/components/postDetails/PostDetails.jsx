@@ -27,7 +27,9 @@ function PostDetails({ posts, setPosts, comments, users }) {
     postComments.sort((a, b) => a.id - b.id);
 
     // Combine the specific comment and sorted comments
-    const allComments = [specificComment, ...postComments];
+    const allComments = specificComment
+      ? [specificComment, ...postComments]
+      : postComments;
 
     // Set the commentsState with the combined comments
     setCommentsState(allComments);
@@ -138,7 +140,8 @@ function PostDetails({ posts, setPosts, comments, users }) {
               {sortedComments.map((comment) => (
                 <li key={comment.id}>
                   <p className="post-user-name">
-                    {"Created by: User " + comment.user.username}
+                    {"Created by: User " +
+                      (comment.user ? comment.user.username : "Unknown")}
                   </p>
                   <p className="comment-body">{comment.body}</p>
                 </li>

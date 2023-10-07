@@ -54,24 +54,32 @@ function App() {
         selectedTag={selectedTag}
         setSelectedTag={setSelectedTag}
       />
-      <CreatePostForm users={users} onPostSubmit={handlePostSubmit} />
       <Routes>
         <Route
           path="/posts/:postId"
           element={
-            <PostDetails
-              posts={posts}
-              setPosts={setPosts}
-              comments={comments}
-              setComments={setComments}
-              users={users}
-            />
+            <>
+              <PostDetails
+                posts={posts}
+                setPosts={setPosts}
+                comments={comments}
+                setComments={setComments}
+                users={users}
+              />
+            </>
           }
         />
         <Route
           path="/"
           element={
-            <Posts allPosts={posts} posts={filteredPosts} setPosts={setPosts} />
+            <>
+              <CreatePostForm users={users} onPostSubmit={handlePostSubmit} />
+              <Posts
+                allPosts={posts}
+                posts={filteredPosts}
+                setPosts={setPosts}
+              />
+            </>
           }
         />
       </Routes>

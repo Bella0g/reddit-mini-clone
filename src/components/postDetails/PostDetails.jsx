@@ -4,9 +4,7 @@ import { ButtonComponent } from "../posts/posts";
 import { BsPlusLg } from "react-icons/bs";
 import "./PostDetails.css";
 
-// Functional component to display post details and comments
 function PostDetails({ posts, setPosts, comments, users }) {
-  // Retrieve the postId from the URL
   const { postId } = useParams();
   const post = posts.find((post) => post.id.toString() === postId);
 
@@ -15,27 +13,24 @@ function PostDetails({ posts, setPosts, comments, users }) {
   const [commentsState, setCommentsState] = useState([]);
 
   useEffect(() => {
-    // Find the specific comment for the post
     const specificComment = comments.find(
       (comment) => comment.id.toString() === postId
     );
 
-    // Filter and sort comments for the post
-    const postComments = comments.filter(
-      (comment) => comment.postId === postId
+    const userCreatedCommentsKey = `user_comments_post_${postId}`;
+    const userCreatedComments = JSON.parse(
+      localStorage.getItem(userCreatedCommentsKey) || "[]"
     );
-    postComments.sort((a, b) => a.id - b.id);
 
-    // Combine the specific comment and sorted comments
-    const allComments = specificComment
-      ? [specificComment, ...postComments]
-      : postComments;
+    const combinedComments = specificComment
+      ? [specificComment, ...userCreatedComments]
+      : userCreatedComments;
 
-    // Set the commentsState with the combined comments
-    setCommentsState(allComments);
+    combinedComments.sort((a, b) => a.id - b.id);
+
+    setCommentsState(combinedComments);
   }, [comments, postId]);
 
-  // Function to add reactions to a post
   const addReactions = (post) => {
     if (post) {
       const updatedPost = { ...post, reactions: post.reactions + 1 };
@@ -45,7 +40,6 @@ function PostDetails({ posts, setPosts, comments, users }) {
       const updatedPosts = [...posts];
       updatedPosts[postIndex] = updatedPost;
 
-      // Update the posts with the updated reactions
       setPosts(updatedPosts);
     }
   };
@@ -59,7 +53,6 @@ function PostDetails({ posts, setPosts, comments, users }) {
   };
 
   const handleAddComment = () => {
-    console.log("Adding a comment");
     if (commentText.trim() !== "" && users.length > 0) {
       const randomUserIndex = Math.floor(Math.random() * users.length);
       const randomUser = users[randomUserIndex];
@@ -73,18 +66,24 @@ function PostDetails({ posts, setPosts, comments, users }) {
         },
       };
 
-      console.log("New comment:", newComment);
+      const userCreatedCommentsKey = `user_comments_post_${postId}`;
+      const userCreatedComments = JSON.parse(
+        localStorage.getItem(userCreatedCommentsKey) || "[]"
+      );
 
-      // Update the comments state with the new comment and existing comments
+      localStorage.setItem(
+        userCreatedCommentsKey,
+        JSON.stringify([...userCreatedComments, newComment])
+      );
+
       setCommentsState((prevComments) => [newComment, ...prevComments]);
 
-      setCommentText(""); // Clear the comment input
+      setCommentText("");
     } else {
       console.error("No users available to create a comment.");
     }
   };
 
-  // If post is not found, display a message
   if (!post) {
     return <div>Post not found</div>;
   }
